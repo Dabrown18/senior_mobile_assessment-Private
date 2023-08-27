@@ -10,8 +10,8 @@ export const accountSlice = createSlice({
   name: 'account',
   initialState,
   reducers: {
-    getTransaction: (state, action: PayloadAction<{data: Transaction[]}>) => {
-      state.transactions = action.payload.data;
+    setTransactions: (state, action: PayloadAction<{data: Transaction[]}>) => {
+      state.transactions = action.payload.data.reverse()
     },
   },
 });

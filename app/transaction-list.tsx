@@ -21,8 +21,8 @@ export const TransactionList = ({
         Transactions
       </Text>
       <ScrollView>
-        {transactions.reverse().map(transaction => (
-          <TransactionListItem transaction={transaction} />
+        {transactions.map((transaction, index) => (
+          <TransactionListItem key={index} transaction={transaction} />
         ))}
       </ScrollView>
     </View>
