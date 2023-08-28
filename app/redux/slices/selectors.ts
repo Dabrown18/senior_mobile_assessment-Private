@@ -1,6 +1,7 @@
 import { RootState } from "../store";
 import { createSelector } from "@reduxjs/toolkit";
 import _ from 'lodash'
+import { Transaction } from "../../types";
 
 export const selectTransactions = (state: RootState) => state.account.transactions
 
@@ -19,6 +20,30 @@ export const selectBalance = createSelector(
   }
 )
 
-function numberWithCommas(x: number) {
+export const selectSections = createSelector(
+  [selectTransactions],
+  (transactions) => {
+    const clonedTransactions = _.cloneDeep(transactions)
+
+    const wires: Transaction[] = []
+    const deposits: Transaction[] = []
+
+    clonedTransactions.map((transaction) => {
+      if (transaction.type === 'wire') {
+        wires.push(transaction)
+      }
+      if (transaction.type === 'deposit') {
+        deposits.push(transaction)
+      }
+    });
+
+    return {
+      wires,
+      deposits
+    }
+  }
+)
+
+function numberWithCommas(x: string) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

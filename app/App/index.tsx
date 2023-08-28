@@ -3,14 +3,14 @@ import React from "react";
 import { fetchTransactions } from "../transaction-data";
 import AppView from "./AppView";
 import { useDispatch, useSelector } from "react-redux";
-import { selectTransactions, selectBalance } from "../redux/slices/selectors";
+import { selectBalance, selectSections } from "../redux/slices/selectors";
 import { accountActions } from "../redux/slices/accountSlice";
 
 const App = () => {
   const dispatch = useDispatch()
   const balance = useSelector(selectBalance)
-  const transactions = useSelector(selectTransactions)
-  
+  const sections = useSelector(selectSections)
+
   const onPressUpdateJS = async () => {
     const response = await fetchTransactions();
     const newTransactions = await response.json();
@@ -27,7 +27,7 @@ const App = () => {
       balance={balance}
       onPressUpdateJS={onPressUpdateJS}
       onPressUpdateNative={onPressUpdateNative}
-      transactions={transactions}
+      sections={sections}
     />
   );
 };
