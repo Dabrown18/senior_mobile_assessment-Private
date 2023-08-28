@@ -36,10 +36,10 @@ const ListCard = ({ title, amount }: { title: string; amount: number }) => (
       padding: 10,
       borderRadius: 2,
       backgroundColor: "#eee",
-      marginHorizontal: 15,
       marginVertical: 2,
       flexDirection: "row",
       justifyContent: "space-between",
+      width: '98%'
     }}
   >
     {amount > 0 ? (

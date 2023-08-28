@@ -5,19 +5,22 @@ import { Transaction } from "../types";
 
 interface Props {
   balance: string
-  transactions: Transaction[]
   onPressUpdateJS: () => void
   onPressUpdateNative: () => void
+  sections: {
+    wires: Transaction[]
+    deposits: Transaction[]
+  }
 }
 
 const AppView: FC<Props> = ({
   balance,
-  transactions,
   onPressUpdateJS,
-  onPressUpdateNative
+  onPressUpdateNative,
+  sections
 }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <StatusBar />
       <Text
         style={styles.balance}>
@@ -34,12 +37,15 @@ const AppView: FC<Props> = ({
           onPress={onPressUpdateNative}
         />
       </View>
-      <TransactionList transactions={transactions} />
+      <TransactionList sections={sections} />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   balance: {
     width: "100%",
     textAlign: "center",
