@@ -19,6 +19,14 @@ export const TransactionList: FC<Props> = ({
       <Text style={styles.title}>
         Transactions
       </Text>
+      <View style={styles.subTitleContainer}>
+        <Text style={styles.subTitle}>
+          A fee may apply
+        </Text>
+        <Text style={styles.subTitle}>
+          A fee may apply
+        </Text>
+      </View>
       <View style={styles.dataContainer}>
         <FlatList
           data={sections.wires}
@@ -53,5 +61,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width:'100%',
     paddingHorizontal: 15
+  },
+  subTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    marginBottom: 5
+  },
+  subTitle: {
+    fontSize: 12,
+    color: 'slategray'
   }
 })
